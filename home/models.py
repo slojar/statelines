@@ -6,11 +6,12 @@ GENDER_CHOICES = (
 )
 
 AGE_RANGE_CHOICES = (
-    ("19_to_24", "19 - 24"), ("25_to_34", "25 - 34"), ("35_to_44", "35 - 44"), ("45_to_above", "45 & Above")
+    ("19 - 24", "19 - 24"), ("25 - 34", "25 - 34"), ("35 - 44", "35 - 44"), ("45 & Above", "45 & Above")
 )
 
 ANNUAL_INCOME_CHOICES = (
-    ("below_1.5", "Below 1.5 Million"), ("above_1.5", "Above 1.5 Million"), ("above_2.5", "Above 2.5 Million")
+    ("Below 1.5 Million", "Below 1.5 Million"), ("Above 1.5 Million", "Above 1.5 Million"),
+    ("Above 2.5 Million", "Above 2.5 Million")
 )
 
 SURVEY_TYPE_CHOICES = (
