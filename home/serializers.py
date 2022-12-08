@@ -1,8 +1,21 @@
+import json
+
 from rest_framework import serializers
 from .models import Questionnaire
 
 
 class QuestionnaireSerializerOut(serializers.ModelSerializer):
+    survey = serializers.SerializerMethodField()
+
+    def get_survey(self, obj):
+        if obj.survey:
+            # items = str(obj.survey).replace("[", "").replace("]", "").replace("{", "").replace("}", "")
+            # result = items.split(",")
+            import json
+
+            # return json.dumps(obj.survey)
+            return json.decoder.JSONDecoder().decode(obj.survey)
+
     class Meta:
         model = Questionnaire
         exclude = []
@@ -16,7 +29,7 @@ class QuestionnaireSerializerIn(serializers.Serializer):
     intervals = serializers.IntegerField()
     survey_type = serializers.CharField()
     comment = serializers.CharField(required=False)
-    survey = serializers.DictField()
+    survey = serializers.ListField()
 
     def create(self, validated_data):
         email = validated_data.get("email")
@@ -28,9 +41,11 @@ class QuestionnaireSerializerIn(serializers.Serializer):
         survey = validated_data.get("survey")
         comment = validated_data.get("comment")
 
+        my_survey = json.dumps(survey)
+
         survey = Questionnaire.objects.create(
             email=email, gender=gender, age_range=age_range, annual_income=annual_income, intervals=intervals,
-            survey=survey, comment=comment, survey_type=survey_type
+            survey=my_survey, comment=comment, survey_type=survey_type
         )
 
         return QuestionnaireSerializerOut(survey).data
