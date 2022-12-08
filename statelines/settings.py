@@ -138,4 +138,5 @@ CORS_ALLOWED_ORIGINS = [
     "http://127.0.0.1"
 ]
 
+CSRF_TRUSTED_ORIGINS = ['https://api-statelines.tm-dev.xyz', 'http://127.0.0.1:8000']
 
